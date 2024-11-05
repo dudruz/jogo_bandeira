@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2196f3;
+    --primary-dark: #1976d2;
+    --primary-light: #bbdefb;
+    --secondary: #ff4081;
+    --background: #f5f9ff;
+    --text: #2c3e50;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+    background-image: url('download\ \(2\).jfif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    text-align: center;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titlePulse 2s infinite;
+}
+
+@keyframes titlePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Imagem da bandeira com efeitos */
+#flagImage {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--shadow);
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+#flagImage:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Container de opções em linha */
+/* Container de opções em linha */
+#options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px 0;
+    padding: 0 20px;
+}
+
+/* Botões de opção estilizados */
+.option {
+    flex: 1;
+    min-width: 180px;
+    background-color: #1976d2;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid var(--primary-light);
+    border-radius: 12px;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: bounceIn 0.5s forwards;
+    animation-delay: calc(var(--order) * 0.15s);
+}
+
+.option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    transition: background 0.4s ease;
+    z-index: -1;
+}
+
+.option:hover::before {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Nova animação de entrada com bounce */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    70% {
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.option:hover {
+    color: var(--primary-dark);
+    border-color: var(--primary);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* Media Query atualizada */
+@media (max-width: 768px) {
+    #options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .option {
+        width: 100%;
+        min-width: auto;
+    }
+}
+/* Resultado com animação */
+#result {
+    font-size: 1.8rem;
+    margin: 25px 0;
+    padding: 15px 30px;
+    border-radius: 10px;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: popIn 0.5s forwards;
+    text-align: center;
+}
+
+.correct {
+    background: #a5d6a7;
+    color: #1b5e20;
+}
+
+.incorrect {
+    background: #ef9a9a;
+    color: #b71c1c;
+}
+
+/* Botão Next com efeito de ripple */
+#nextButton {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+    animation-delay: 0.5s;
+}
+
+#nextButton:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    #flagImage {
+        width: 90%;
+        height: auto;
+    }
+
+    #options {
+        grid-template-columns: 1fr;
+    }
+
+    .option {
+        width: 100%;
+    }
+}
+
+/* Tema escuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1a1a2e;
+        --text: #ffffff;
+        --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    .option {
+        background: #2d2d42;
+        border-color: #3f3f5f;
+    }
+
+    .option:hover {
+        background: #3f3f5f;
+        color: white;
+    }
+}
